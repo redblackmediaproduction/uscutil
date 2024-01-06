@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.redblackmediaproduction</groupId>
+    <artifactId>uscutil</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>libusc</module>
+        <module>libmrz</module>
+        <module>libmrz_cv</module>
+        <module>gui</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <log4j-core.version>2.22.0</log4j-core.version>
+        <junit-jupiter-engine.version>5.9.1</junit-jupiter-engine.version>
+        <maven-surefire-plugin.version>3.2.3</maven-surefire-plugin.version>
+        <javacv-platform.version>1.5.8</javacv-platform.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit-jupiter-engine.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>javacv-platform</artifactId>
+                <version>${javacv-platform.version}</version>
+                <exclusions>
+                    <!-- do not exclude openblas, webcam input requires it -->
+                    <!-- do not exclude leptonica, tesseract requires it -->
+                    <exclusion>
+                        <artifactId>ffmpeg-platform</artifactId>
+                        <groupId>org.bytedeco</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>flycapture-platform</artifactId>
+                        <groupId>org.bytedeco</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>libdc1394-platform</artifactId>
+                        <groupId>org.bytedeco</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>libfreenect-platform</artifactId>
+                        <groupId>org.bytedeco</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>libfreenect2-platform</artifactId>
+                        <groupId>org.bytedeco</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>librealsense-platform</artifactId>
+                        <groupId>org.bytedeco</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>librealsense2-platform</artifactId>
+                        <groupId>org.bytedeco</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>artoolkitplus-platform</artifactId>
+                        <groupId>org.bytedeco</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>flandmark-platform</artifactId>
+                        <groupId>org.bytedeco</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- javacv uses slf4j under the hood, avoid error 'SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder"' -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j-core.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

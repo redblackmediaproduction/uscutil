@@ -1,0 +1,5 @@
+countryCodes:
+    1. ISO // https://www.iso.org/obp/ui/#search
+    2. ICAO 9303-3 // https://www.icao.int/publications/Documents/9303_p3_cons_en.pdf
+    3. Wikipedia // https://en.wikipedia.org/wiki/Machine-readable_passport#Nationality_/_Citizenship_codes
+Note: when saving using Excel, strip the BOM in the first row, otherwise nameEnglish will not be populated!

@@ -1,0 +1,3 @@
+[submodule "libmrz_cv/src/main/resources/tessdata_fast"]
+	path = libmrz_cv/src/main/resources/tessdata_fast
+	url = git@github.com:tesseract-ocr/tessdata_fast.git
